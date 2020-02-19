@@ -1,50 +1,19 @@
 import Taxonomy from './types/Taxonomy'
+import Post from './types/Post'
 export default class Config {
   static resources: object = {
     'pages': {
       resourceURL: 'pages',
       sheetName: 'Pages',
       mappingCallback: (resource) => {
-        var page = {
-          id: resource.id,
-          title: resource.title.rendered,
-          datePublished: resource.date,
-          slug: resource.slug,
-          wordpressLink: resource.link,
-          seoKeywords: '',
-          googleDocsLink: '',
-          googleDocCreated: 0,
-          googleFileType: ''
-        }
-        
-        var pageArray = []
-        for (var key in page) {
-          pageArray.push(page[key]);
-        }
-        return pageArray;
+        return new Post(resource).formatted
       }
     },
     'posts': {
       resourceURL: 'posts',
       sheetName: 'Posts',
       mappingCallback: (resource) => {
-        var post = {
-          id: resource.id,
-          title: resource.title.rendered,
-          datePublished: resource.date,
-          slug: resource.slug,
-          wordpressLink: resource.link,
-          seoKeywords: '',
-          googleDocsLink: '',
-          googleDocCreated: 0,
-          googleFileType: ''
-        }
-        
-        var postArray = []
-        for (var key in post) {
-          postArray.push(post[key]);
-        }
-        return postArray;
+        return new Post(resource).formatted
       }
 
     },
